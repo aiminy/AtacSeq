@@ -8,6 +8,8 @@ installAtacSeq <- function(genome,DATA.DIR)
 
   cmd0= "bash ~/atac_dnase_pipelines/install_genome_data.sh"
   cmd1= paste0(cmd0,genome,DATA.DIR,seperate=" ")
+  print(cmd1)
+
   system(cmd1)
 
 }
