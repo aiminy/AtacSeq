@@ -1,3 +1,7 @@
+# if not runnning using bsub:
+#
+# R -e 'library(DoGs);library(AtacSeq);AtacSeq:::installAtacSeq("hg19","/scratch/projects/bbc/aiminy_project/AtacSeq")'
+#
 installAtacSeq <- function(genome,DATA.DIR)
 {
 
@@ -14,8 +18,6 @@ installAtacSeq <- function(genome,DATA.DIR)
 #R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob("hg19","/scratch/projects/bbc/aiminy_project/AtacSeq")'
 
 submitJob <- function(genome,DATA.DIR){
-
-  #Sys.setenv(JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.45.x86_64/jre/lib/amd64/server')
 
   if (!dir.exists(DATA.DIR))
   {
