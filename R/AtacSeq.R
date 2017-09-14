@@ -7,8 +7,6 @@ installAtacSeq <- function(genome,DATA.DIR)
 
   if(!dir.exists(DATA.DIR)){dir.create(DATA.DIR,recursive = TRUE)}
 
-
-
   cmd0= "export PYTHONPATH=~/miniconda3/lib/python3.6;bash ~/atac_dnase_pipelines/install_genome_data.sh"
   cmd1= paste(cmd0,genome,DATA.DIR,collapse = " ")
   print(cmd1)
