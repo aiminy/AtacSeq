@@ -1,4 +1,4 @@
-# Instruction for setting anf using AtacSeq pipeline
+# Instruction for setting and using AtacSeq pipeline
 
 * To install
 ```{r}
