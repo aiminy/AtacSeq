@@ -41,3 +41,91 @@ submitJob <- function(genome,DATA.DIR){
   system(cmd.gff)
 
 }
+
+testAtacSeq <- function(input.file.dir,output.file.dir)
+{
+
+  file.1 <- list.files(input.bam.dir,pattern=".bam$",all.files = TRUE,full.names = TRUE,recursive = TRUE,include.dirs = TRUE)
+
+  r.lib<- Sys.getenv("R_LIBS_USER")
+
+  if (!dir.exists(dirname(output.file.dir)))
+  {
+    dir.create(dirname(output.file.dir), recursive = TRUE)
+  }
+
+  input <- paste(file.1,collapse = " ")
+  output <- output.file.dir
+
+  cmd1 <- paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq.sh"),input,output,sep = " ")
+
+  print(cmd1)
+
+  system(cmd1)
+
+}
+
+#R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob("hg19","/scratch/projects/bbc/aiminy_project/AtacSeq")'
+
+submitJob4testAtacSeq <- function(input.file.dir,output.file.dir){
+
+  job.name <- "RunAtac"
+
+  Rfun1 <- 'library(AtacSeq);re <- AtacSeq:::testAtacSeq('
+
+  Rinput <- paste0('\\"',input.file.dir,'\\",',
+                   '\\"',output.file.dir,'\\"')
+  Rfun2 <- ')'
+
+  Rfun <-paste0(Rfun1,Rinput,Rfun2)
+
+  cmd.gff <- DoGs:::createBsubJobArrayRfun(Rfun,job.name,wait.job.name=NULL)
+
+  system(cmd.gff)
+
+}
+
+
+testAtacSeq0 <- function()
+{
+
+  #file.1 <- list.files(input.bam.dir,pattern=".bam$",all.files = TRUE,full.names = TRUE,recursive = TRUE,include.dirs = TRUE)
+
+  r.lib<- Sys.getenv("R_LIBS_USER")
+
+  #if (!dir.exists(dirname(output.file.dir)))
+  #{
+  #  dir.create(dirname(output.file.dir), recursive = TRUE)
+  #
+  #}
+
+  #input <- paste(file.1,collapse = " ")
+  #output <- output.file.dir
+
+  cmd1 <- paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq.sh"),sep = " ")
+
+  print(cmd1)
+
+  system(cmd1)
+
+}
+
+#R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0'
+
+submitJob4testAtacSeq0 <- function(){
+
+  job.name <- "RunAtac"
+
+  Rfun1 <- 'library(AtacSeq);re <- AtacSeq:::testAtacSeq0'
+
+  #Rinput <- paste0('\\"',input.file.dir,'\\",',
+         #          '\\"',output.file.dir,'\\"')
+  #Rfun2 <- ')'
+
+  Rfun <- Rfun1
+
+  cmd.gff <- DoGs:::createBsubJobArrayRfun(Rfun,job.name,wait.job.name=NULL)
+
+  system(cmd.gff)
+
+}
