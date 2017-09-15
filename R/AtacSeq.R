@@ -128,7 +128,7 @@ submitJob4testAtacSeq0 <- function(){
 
   cmd.gff <- DoGs:::createBsubJobArrayRfun(Rfun,job.name,wait.job.name=NULL)
 
-  cmd0="module load java/1.8.0_60"
+  cmd0="module load java/1.8.0_60;export _JAVA_OPTIONS=-Xms256M -Xmx728M -XX:ParallelGCThreads=1"
   cmd.gff2=paste(cmd0,cmd.gff,sep=";")
 
   system(cmd.gff2)
