@@ -102,7 +102,9 @@ testAtacSeq0 <- function()
   #input <- paste(file.1,collapse = " ")
   #output <- output.file.dir
 
-  cmd1 <- paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq.sh"),sep = " ")
+  cmd0="export PATH=/usr/bin:$PATH"
+
+  cmd1 <- paste(cmd0,paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq.sh"),sep = " "),sep=";")
 
   print(cmd1)
 
