@@ -110,13 +110,13 @@ testAtacSeq0 <- function()
 
 }
 
-#R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0'
+#R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
 
 submitJob4testAtacSeq0 <- function(){
 
   job.name <- "RunAtac"
 
-  Rfun1 <- 'library(AtacSeq);re <- AtacSeq:::testAtacSeq0'
+  Rfun1 <- 'library(AtacSeq);re <- AtacSeq:::testAtacSeq0()'
 
   #Rinput <- paste0('\\"',input.file.dir,'\\",',
          #          '\\"',output.file.dir,'\\"')
