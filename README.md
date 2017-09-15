@@ -7,11 +7,17 @@
 # After downkloading, run the following:
 bash Anaconda3-4.4.0-Linux-x86_64.sh
 module unload python/2.7.3
+conda install -c bioconda cutadapt
 ```
 
 * To install
 ```{r}
 R -e 'library(devtools);install_github("aiminy/AtacSeq")'
+```
+
+* To test
+```{r}
+ R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
 ```
 
 * To use
