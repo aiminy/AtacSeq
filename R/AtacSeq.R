@@ -102,9 +102,9 @@ testAtacSeq0 <- function()
   #input <- paste(file.1,collapse = " ")
   #output <- output.file.dir
 
-  cmd0="export PATH=/usr/bin:$PATH"
+  #cmd0="export PATH=/usr/bin:$PATH"
 
-  cmd1 <- paste(cmd0,paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq.sh"),sep = " "),sep=";")
+  cmd1 <- paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq.sh"),sep = " ")
 
   print(cmd1)
 
@@ -128,6 +128,9 @@ submitJob4testAtacSeq0 <- function(){
 
   cmd.gff <- DoGs:::createBsubJobArrayRfun(Rfun,job.name,wait.job.name=NULL)
 
-  system(cmd.gff)
+  cmd0="export PATH=/usr/bin:$PATH"
+  cmd.gff2=paste(cmd0,cmd.gff,sep=";")
+
+  system(cmd.gff2)
 
 }
