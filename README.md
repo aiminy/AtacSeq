@@ -17,6 +17,7 @@ conda install -c bioconda cutadapt
 conda install -c bioconda sambamba
 conda install -c conda-forge -c bioconda samtools bzip2
 conda install -c bioconda picard
+conda install -c bioconda idr
 ```
 
 * To install
