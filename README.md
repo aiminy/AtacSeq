@@ -2,12 +2,21 @@
 
 * Install some required tools
 ```{}
-# install Anaconda3
+# install the following software
+
+# Anaconda3
 # Download Anaconda 4.4.0 For Linux for Python 3.6 version from https://www.anaconda.com/download/
 # After downkloading, run the following:
 bash Anaconda3-4.4.0-Linux-x86_64.sh
+
+# To use Python3.6 you installed locally, you need to unload default python/2.7.3 firstly
 module unload python/2.7.3
+
+# Other required software
 conda install -c bioconda cutadapt
+conda install -c bioconda sambamba
+conda install -c conda-forge -c bioconda samtools bzip2
+conda install -c bioconda picard
 ```
 
 * To install
