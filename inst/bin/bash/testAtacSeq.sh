@@ -1,7 +1,7 @@
 #!/bin/bash
 
 module unload python/2.7.3
-export PYTHONPATH=/nethome/axy148/anaconda3/lib/python3.6/site-packages:$PYTHONPATH
+#export PYTHONPATH=/nethome/axy148/anaconda3/lib/python3.6/site-packages:$PYTHONPATH
 
 TITLE=AtacTest2;SPECIES=hg19;
 FASTQ1_1=/nethome/axy148/bioinf525/SRR891268.1.fq.gz
