@@ -1,5 +1,7 @@
 #!/bin/bash
 
+module unload python/2.7.3
+
 TITLE=AtacTest2;SPECIES=hg19;
 FASTQ1_1=/nethome/axy148/bioinf525/SRR891268.1.fq.gz
 FASTQ1_2=/nethome/axy148/bioinf525/SRR891268.2.fq.gz
