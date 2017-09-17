@@ -1,6 +1,8 @@
 #!/bin/bash
 
 module unload python/2.7.3
+unset PYTHONPATH
+source activate python2
 #export PYTHONPATH=/nethome/axy148/anaconda3/lib/python3.6/site-packages:$PYTHONPATH
 
 TITLE=AtacTest2;SPECIES=hg19;
