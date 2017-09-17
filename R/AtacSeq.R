@@ -130,6 +130,8 @@ submitJob4testAtacSeq0 <- function(){
 
   cmd0="module load java/1.8.0_60;export _JAVA_OPTIONS=-Xms256M -Xmx728M -XX:ParallelGCThreads=1;module unload python/2.7.3;export PYTHONPATH=/nethome/axy148/anaconda3/lib/python3.6/site-packages:$PYTHONPATH"
 
+  cmd0="module load java/1.8.0_60;export _JAVA_OPTIONS=-Xms256M -Xmx728M -XX:ParallelGCThreads=1"
+
   cmd.gff2=paste(cmd0,cmd.gff,sep=";")
 
   system(cmd.gff2)
