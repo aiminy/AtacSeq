@@ -20,6 +20,12 @@ conda install -c bioconda picard
 conda install -c bioconda idr
 #pip install --upgrade --force-reinstall numpy
 conda install -c conda-forge numpy
+
+# To install pysam in your current conda environment, type:
+conda config --add channels r
+conda config --add channels bioconda
+conda install pysam
+
 ```
 
 * To install
@@ -27,15 +33,14 @@ conda install -c conda-forge numpy
 R -e 'library(devtools);install_github("aiminy/AtacSeq")'
 ```
 
-* To test
-```{r}
- R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
-```
-
-* To use
+* To install genome data for a specific genome(hg19) 
 ```{r}
 R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob("hg19","/scratch/projects/bbc/aiminy_project/AtacSeq")'
 #change to /nethome/axy148/atac_dnase_pipelines directory, and check
 bds atac.bds
 ```
 
+* To test
+```{r}
+ R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
+```
