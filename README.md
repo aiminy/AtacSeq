@@ -47,6 +47,5 @@ bds atac.bds
 
 * To test
 ```{r}
-
- R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
+R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
 ```
