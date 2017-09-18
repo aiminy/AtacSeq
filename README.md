@@ -36,11 +36,17 @@ R -e 'library(devtools);install_github("aiminy/AtacSeq")'
 * To install genome data for a specific genome(hg19) 
 ```{r}
 R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob("hg19","/scratch/projects/bbc/aiminy_project/AtacSeq")'
+
+```
+
+* To check if atac is installed
+```{r}
 #change to /nethome/axy148/atac_dnase_pipelines directory, and check
 bds atac.bds
 ```
 
 * To test
 ```{r}
+
  R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
 ```
