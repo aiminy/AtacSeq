@@ -12,4 +12,4 @@ FASTQ1_1=$1
 FASTQ1_2=$2
 WORK=$3/$TITLE; mkdir -p $WORK; cd $WORK
 
-bds /nethome/axy148/atac_dnase_pipelines/atac.bds -species $SPECIES -nth 8 -fastq1_1 $FASTQ1_1 -fastq1_2 $FASTQ1_2 -out_dir $WORK
+bds $HOME/atac_dnase_pipelines/atac.bds -species $SPECIES -nth 8 -fastq1_1 $FASTQ1_1 -fastq1_2 $FASTQ1_2 -out_dir $WORK
