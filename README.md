@@ -22,10 +22,24 @@ conda install -c bioconda idr
 conda install -c conda-forge numpy
 
 # To install pysam in your current conda environment, type:
+
+# add channels
 conda config --add channels r
 conda config --add channels bioconda
+conda config --add channels conda-forge
+
+# list available channels
+# less ~/.condarc
+
 conda install pysam
 
+```
+
+# Test environment
+```{r} 
+module rm python/2.7.3
+conda install -c conda-forge -c bioconda samtools bzip2
+conda install htslib
 ```
 
 * To install

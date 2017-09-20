@@ -148,3 +148,31 @@ submitJob4testAtacSeq0 <- function(){
 
 }
 
+# R -e 'library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster("/media/aiminyan/DATA/AtacSeq_Input","/media/aiminyan/DATA/AtacSeq_Output")'
+
+testAtacSeqNonCluster <- function(input.fastq.dir,output)
+{
+
+  file.1 <- list.files(input.fastq.dir,pattern="*.fq.gz$",all.files = TRUE,full.names = TRUE,recursive = TRUE,include.dirs = TRUE)
+
+  r.lib<- Sys.getenv("R_LIBS_USER")
+
+  if (!dir.exists(dirname(output)))
+  {
+    dir.create(dirname(output), recursive = TRUE)
+  }
+
+  #input <- paste(file.1,collapse = " ")
+  #output <- output.file.dir
+
+  #cmd0="export PATH=/usr/bin:$PATH"
+
+  cmd1 <- paste("sh",file.path(r.lib,"AtacSeq/bin/bash/testAtacSeq1.sh"),file.1[1],file.1[2],output,sep = " ")
+
+  print(cmd1)
+
+  system(cmd1)
+
+}
+
+
