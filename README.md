@@ -61,5 +61,9 @@ bds atac.bds
 
 * To test
 ```{r}
+# On cluster
 R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
+
+#On local linux machine
+R -e 'library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster("/media/aiminyan/DATA/AtacSeq_Input","/media/aiminyan/DATA/AtacSeq_Output")'
 ```
