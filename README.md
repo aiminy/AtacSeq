@@ -66,4 +66,12 @@ R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob4testAtacSeq0()'
 
 #On local linux machine
 R -e 'library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster("/media/aiminyan/DATA/AtacSeq_Input","/media/aiminyan/DATA/AtacSeq_Output")'
+
+sample.info = "~/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv"
+title = "IL-2vsPBS"
+species = "mm10"
+input.fq.dir = "~/pegasus/Project/Alejandro_atac/DATA/Formatted"
+output = "~/pegasus/Project/Alejandro_AtacSeq"
+
+R -e 'library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster2(sample.info,input.fq.dir,title,species,output)'
 ```

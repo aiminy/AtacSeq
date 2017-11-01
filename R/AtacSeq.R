@@ -175,4 +175,98 @@ testAtacSeqNonCluster <- function(input.fastq.dir,output)
 
 }
 
+CutStringByNFromEnd <- function(SequenceSampleID,n){
 
+  SequenceSampleID2 <- lapply(SequenceSampleID,function(u,n){
+    m <- nchar(u)
+    ff <- strtrim(u,m-n)
+    ff
+  },n)
+
+  SequenceSampleID3 <- unlist(SequenceSampleID2)
+
+  return(SequenceSampleID3)
+}
+
+generateFq <- function(f,tm,pattern,TorC){
+
+f1 <- f[grep(pattern = pattern,f$Sample.Name),]
+f2 <- f1[which(f1$Hours==tm),]
+s <- unique(f2$Sample)
+
+x <- lapply(1:length(s),function(u,s,f2){
+
+  v <- paste(paste0(TorC,u,"_1"),f2[which(f2$Sample==s[u]),]$fq.files[1],paste0(TorC,u,"_2"),f2[which(f2$Sample==s[u]),]$fq.files[2],sep=" ")
+  v
+},s,f2)
+
+xx <- paste(do.call(c,x),collapse = " ")
+
+xx
+
+}
+
+# sample.info = "~/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv"
+# title = "IL-2vsPBS"
+# species = "mm10"
+# input.fq.dir = "~/pegasus/Project/Alejandro_atac/DATA/Formatted"
+# output = "~/pegasus/Project/Alejandro_AtacSeq"
+#
+# AtacSeq:::testAtacSeqNonCluster2(sample.info,input.fq.dir,title,species,output)
+#
+testAtacSeqNonCluster2 <- function(sample.info,input.fq.dir,title,species,output)
+{
+
+  f <- read.csv(sample.info)
+
+  fq.files <- list.files(path = input.fq.dir, pattern= "*.fastq$",full.names = TRUE, recursive = TRUE)
+
+  fq.files.2 <- cbind.data.frame(fq.files,CutStringByNFromEnd(as.character(basename(fq.files)),12),stringsAsFactors = F)
+
+  colnames(fq.files.2)[2] =  "BaseSpace.Sample.ID"
+
+  print(f)
+
+  print(fq.files.2)
+
+  ff <- merge(fq.files.2,f,by="BaseSpace.Sample.ID")
+
+  print(ff)
+
+  #fq1 <- ff[which((ff$Hours==16.00)&&(grep("PBS",ff$Sample.Name))),]$fq.files
+
+  #fq2 <- ff[which((ff$Hours==16.00)&&(grep("IL2",ff$Sample.Name))),]$fq.files
+
+  #print(fq1)
+
+  #print(fq2)
+
+
+
+  if (!dir.exists(dirname(output)))
+  {
+    dir.create(dirname(output), recursive = TRUE)
+  }
+
+cmd0 = "unset PYTHONPATH"
+cmd1 = paste0("TITLE=",title)
+cmd2 = paste0("SPECIES=",species)
+cmd3 = paste0("WORK=",file.path(output,"$TITLE"))
+cmd4 = "mkdir -p $WORK;cd $WORK"
+cmd5 = "$HOME/atac_dnase_pipelines/atac.bds -species $SPECIES -nth 8"
+
+cmd6.t = generateFq(ff,16.00,"IL2","-fastq")
+cmd6.ck = generateFq(ff,16.00,"PBS","-ctl_fastq")
+
+cmd6 = paste(cmd6.t,cmd6.ck,sep = " ")
+
+cmd7 = "-out_dir $WORK"
+cmd8 = paste(cmd5,cmd6,cmd7)
+
+cmd = paste(cmd0,cmd1,cmd2,cmd3,cmd4,cmd8,sep=";")
+
+cat(cmd,"\n")
+
+#return(ff)
+
+}
