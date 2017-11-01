@@ -267,6 +267,8 @@ cmd = paste(cmd0,cmd1,cmd2,cmd3,cmd4,cmd8,sep=";")
 
 cat(cmd,"\n")
 
+system(cmd)
+
 #return(ff)
 
 }
