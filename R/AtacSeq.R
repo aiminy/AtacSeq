@@ -260,7 +260,7 @@ cmd6.ck = generateFq(ff,16.00,"PBS","-ctl_fastq")
 
 cmd6 = paste(cmd6.t,cmd6.ck,sep = " ")
 
-cmd7 = "-out_dir $WORK"
+cmd7 = "-enable_idr -auto_detect_adapter -idr_suffix -gensz mm -out_dir $WORK"
 cmd8 = paste(cmd5,cmd6,cmd7)
 
 cmd = paste(cmd0,cmd1,cmd2,cmd3,cmd4,cmd8,sep=";")
