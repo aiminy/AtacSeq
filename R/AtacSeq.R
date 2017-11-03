@@ -355,7 +355,7 @@ testAtacSeqNonCluster3 <- function(sample.info,input.fq.dir,species,output)
   cat("\n")
       }
 
-  #system(cmd)
+  system(cmd)
     },ff,species,output,u)
 
   },ss,ff,species,output)
