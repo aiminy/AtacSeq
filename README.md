@@ -70,8 +70,12 @@ R -e 'library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster("/media/aim
 # On Macs
 R -e 'sample.info = "~/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv";title = "IL-2vsPBS";species = "mm10";input.fq.dir ="~/pegasus/Project/Alejandro_atac/DATA/Formatted";output = "~/pegasus/Project/Alejandro_AtacSeq";library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster2(sample.info,input.fq.dir,title,species,output)'
 
-# On linux
+# On linux to run for IL2-at-16
 R -e 'sample.info = "/media/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv";title = "IL-2vsPBS";species = "mm10";input.fq.dir ="/media/pegasus/Project/Alejandro_atac/DATA/Formatted";output = "/media/pegasus/Project/Alejandro_AtacSeq";library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster2(sample.info,input.fq.dir,title,species,output)'
 
+# On linux to run other samples
+R -e 'sample.info = "~/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv";species = "mm10";input.fq.dir ="~/pegasus/Project/Alejandro_atac/DATA/Formatted";output = "~/pegasus/Project/Alejandro_AtacSeq";AtacSeq:::testAtacSeqNonCluster3(sample.info,input.fq.dir,species,output)'
 ```
+
+
 
