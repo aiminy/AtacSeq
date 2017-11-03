@@ -297,7 +297,7 @@ testAtacSeqNonCluster3 <- function(sample.info,input.fq.dir,species,output)
 
   ff <- merge(fq.files.2,f,by="BaseSpace.Sample.ID")
 
-  #print(ff)
+  print(ff)
 
   t <- unique(ff$Hours)
   s <- unique(as.character(ff$Sample.Name))
@@ -328,8 +328,11 @@ testAtacSeqNonCluster3 <- function(sample.info,input.fq.dir,species,output)
 
     lapply(ss,function(y,ff,species,output,u){
 
+
   title= paste0(y,"-at-",u)
 
+  if(title!="IL2-at-16")
+  {
   cmd1 = paste0("TITLE=",title)
   cmd2 = paste0("SPECIES=",species)
   cmd3 = paste0("WORK=",file.path(output,"$TITLE"))
@@ -350,6 +353,8 @@ testAtacSeqNonCluster3 <- function(sample.info,input.fq.dir,species,output)
   cat(title,"\n")
   cat(cmd,"\n")
   cat("\n")
+      }
+
   #system(cmd)
     },ff,species,output,u)
 
