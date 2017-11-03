@@ -272,3 +272,92 @@ system(cmd)
 #return(ff)
 
 }
+
+# sample.info = "~/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv"
+# species = "mm10"
+# input.fq.dir = "~/pegasus/Project/Alejandro_atac/DATA/Formatted"
+# output = "~/pegasus/Project/Alejandro_AtacSeq"
+#
+# AtacSeq:::testAtacSeqNonCluster3(sample.info,input.fq.dir,species,output)
+#
+testAtacSeqNonCluster3 <- function(sample.info,input.fq.dir,species,output)
+{
+
+  f <- read.csv(sample.info)
+
+  fq.files <- list.files(path = input.fq.dir, pattern= "*.fastq$",full.names = TRUE, recursive = TRUE)
+
+  fq.files.2 <- cbind.data.frame(fq.files,CutStringByNFromEnd(as.character(basename(fq.files)),12),stringsAsFactors = F)
+
+  colnames(fq.files.2)[2] =  "BaseSpace.Sample.ID"
+
+  #print(f)
+
+  #print(fq.files.2)
+
+  ff <- merge(fq.files.2,f,by="BaseSpace.Sample.ID")
+
+  #print(ff)
+
+  t <- unique(ff$Hours)
+  s <- unique(as.character(ff$Sample.Name))
+
+  ss <- unique(as.character(sapply(strsplit(s,"_"), `[`, 1)))
+  #ss <- strsplit(s,"_")[1]
+
+  #print(t)
+  #print(ss)
+
+  #fq1 <- ff[which((ff$Hours==16.00)&&(grep("PBS",ff$Sample.Name))),]$fq.files
+
+  #fq2 <- ff[which((ff$Hours==16.00)&&(grep("IL2",ff$Sample.Name))),]$fq.files
+
+  #print(fq1)
+
+  #print(fq2)
+
+  if (!dir.exists(dirname(output)))
+  {
+    dir.create(dirname(output), recursive = TRUE)
+  }
+
+
+  cmd0 = "unset PYTHONPATH"
+
+ cmd.l <- lapply(t, function(u,ss,ff,species,output){
+
+    lapply(ss,function(y,ff,species,output,u){
+
+  title= paste0(y,"-at-",u)
+
+  cmd1 = paste0("TITLE=",title)
+  cmd2 = paste0("SPECIES=",species)
+  cmd3 = paste0("WORK=",file.path(output,"$TITLE"))
+  cmd4 = "mkdir -p $WORK;cd $WORK"
+  cmd5 = "$HOME/atac_dnase_pipelines/atac.bds -species $SPECIES -nth 8"
+
+  cmd6 = generateFq(ff,u,y,"-fastq")
+  #cmd6.ck = generateFq(ff,16.00,"PBS","-ctl_fastq")
+
+  #cmd6 = paste(cmd6.t,cmd6.ck,sep = " ")
+
+  cmd7 = "-enable_idr -idr_suffix -gensz mm -out_dir $WORK"
+  cmd8 = paste(cmd5,cmd6,cmd7)
+
+  cmd = paste(cmd0,cmd1,cmd2,cmd3,cmd4,paste0(cmd8,"&"),sep=";")
+
+
+  cat(title,"\n")
+  cat(cmd,"\n")
+  cat("\n")
+  #system(cmd)
+    },ff,species,output,u)
+
+  },ss,ff,species,output)
+  #return(ff)
+
+}
+
+
+
+
