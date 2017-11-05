@@ -1,6 +1,6 @@
 # Instruction for setting and using AtacSeq pipeline
 
-* Install some required tools
+## Install some required tools
 ```{}
 # install the following software
 
@@ -35,7 +35,7 @@ conda install pysam
 
 ```
 
-# Test environment
+## Test environment
 ```{r} 
 module rm python/2.7.3
 conda install -c conda-forge -c bioconda samtools bzip2
@@ -53,7 +53,7 @@ R -e 'library(DoGs);library(AtacSeq);AtacSeq:::submitJob("hg19","/scratch/projec
 
 ```
 
-* To check if atac is installed
+## To check if atac is installed
 ```{r}
 #change to /nethome/axy148/atac_dnase_pipelines directory, and check
 bds atac.bds
@@ -69,8 +69,14 @@ R -e 'library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster("/media/aim
 
 # On Macs
 R -e 'sample.info = "~/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv";title = "IL-2vsPBS";species = "mm10";input.fq.dir ="~/pegasus/Project/Alejandro_atac/DATA/Formatted";output = "~/pegasus/Project/Alejandro_AtacSeq";library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster2(sample.info,input.fq.dir,title,species,output)'
+```
 
-# On linux to run for IL2-at-16
+## On linux to run
+```{r}
+# install mm10 genome data
+R -e 'library(DoGs);library(AtacSeq);AtacSeq:::installAtacSeq("mm10","/media/pegasus/Project/Alejandro_AtacSeq")'
+
+# run for  IL2-at-16
 R -e 'sample.info = "/media/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv";title = "IL-2vsPBS";species = "mm10";input.fq.dir ="/media/pegasus/Project/Alejandro_atac/DATA/Formatted";output = "/media/pegasus/Project/Alejandro_AtacSeq";library(DoGs);library(AtacSeq);AtacSeq:::testAtacSeqNonCluster2(sample.info,input.fq.dir,title,species,output)'
 
 # On linux to run other samples
