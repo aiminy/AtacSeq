@@ -82,3 +82,9 @@ R -e 'sample.info = "/media/pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_map
 # On linux to run other samples
 R -e 'sample.info = "/media//pegasus/Project/Alejandro_AtacSeq/ATACSeq_sample_mapping.csv";species = "mm10";input.fq.dir ="/media/pegasus/Project/Alejandro_atac/DATA/Formatted";output = "/media/pegasus/Project/Alejandro_AtacSeq";AtacSeq:::testAtacSeqNonCluster3(sample.info,input.fq.dir,species,output)'
 ```
+## Upload results from pegausus to dropbox
+```bash
+git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
+chmod +x Dropbox-Uploader/dropbox_uploader.sh
+Dropbox-Uploader/dropbox_uploader.sh upload /media/pegasus/Project/Alejandro_AtacSeq Alejandro_AtacSeq_uploaded_2
+```
